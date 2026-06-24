@@ -1,6 +1,6 @@
 # Enterprise AI Skills Documentation
 
-This document covers all twelve AI skill entries in this repository — seven personal skills and bundles built for **Copilot Cowork** and five organizational skills built for **Copilot in SharePoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
+This document covers all fourteen AI skill entries in this repository — nine personal skills and bundles built for **Copilot Cowork** and five organizational skills built for **Copilot in SharePoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
 
 ---
 
@@ -11,16 +11,18 @@ This document covers all twelve AI skill entries in this repository — seven pe
 2. [Pre-Commitment Capacity Check](#2-pre-commitment-capacity-check)
 3. [Stakeholder Intelligence Brief](#3-stakeholder-intelligence-brief)
 4. [Morning Briefing](#4-morning-briefing)
-5. [Synozur Board](#5-synozur-board)
-6. [Marketing Skills Bundle](#6-marketing-skills-bundle)
-7. [Sales Harness Bundle](#7-sales-harness-bundle)
+5. [Weekday Morning Briefing](#5-weekday-morning-briefing)
+6. [Synozur Board](#6-synozur-board)
+7. [Marketing Skills Bundle](#7-marketing-skills-bundle)
+8. [Sales Harness Bundle](#8-sales-harness-bundle)
+9. [Spot Financial Outliers](#9-spot-financial-outliers)
 
 **Copilot in SharePoint Skills**
-8. [Content Expiration Sentinel](#8-content-expiration-sentinel)
-9. [Onboarding Path Synthesizer](#9-onboarding-path-synthesizer)
-10. [Process Compliance First-Pass](#10-process-compliance-first-pass)
-11. [Excel to Branded HTML Dashboard](#11-excel-to-branded-html-dashboard)
-12. [Library Destination Advisor](#12-library-destination-advisor)
+10. [Content Expiration Sentinel](#10-content-expiration-sentinel)
+11. [Onboarding Path Synthesizer](#11-onboarding-path-synthesizer)
+12. [Process Compliance First-Pass](#12-process-compliance-first-pass)
+13. [Excel to Branded HTML Dashboard](#13-excel-to-branded-html-dashboard)
+14. [Library Destination Advisor](#14-library-destination-advisor)
 
 **Summary**
 - [Copilot Cowork vs SharePoint Skills](#copilot-cowork-vs-sharepoint-skills)
@@ -283,7 +285,58 @@ The front matter requires `name` and `description`. No additional configuration 
 
 ---
 
-## 5. Synozur Board
+
+## 5. Weekday Morning Briefing
+
+### What It Is
+
+The Weekday Morning Briefing is a Chris McNulty-specific start-of-day email optimized for workdays. It expands the general Morning Briefing into an eight-section briefing that adds location-aware weather, Boston sports, and enterprise AI news while preserving the same goal: a fast, factual scan of what matters before the day starts. It is intentionally user-scoped — if anyone other than Chris requests a morning briefing, the general `morning-briefing` skill should be used instead.
+
+### When to Use It
+
+- On a weekday morning, when Chris wants one consolidated read on overnight developments before opening the full inbox
+- When travel or calendar context should change the weather and schedule assumptions for the day
+- When enterprise AI developments in the last 24 hours need to be surfaced alongside operational priorities
+- When a scheduled workday send should arrive as a polished HTML email before the first meeting
+- When Monday's briefing needs to roll up the weekend rather than only the prior 24 hours
+
+### How It Works
+
+The skill resolves the day from Pacific Time, extends look-back windows through the weekend on Mondays, and runs the independent lookups in parallel. It assembles eight sections in a fixed order: top news, weather, Boston sports, enterprise AI news, open threads awaiting reply, priority client updates, committed tasks, and today's calendar.
+
+Several gates keep the briefing reliable. Weather is location-aware, inferred from calendar and travel context before falling back to Bothell, Washington. Sports coverage includes only in-season Boston teams, and enterprise AI news must be explicitly date-verified within the last 24 hours or omitted. Communications sections apply a strict addressee test so distribution-list traffic and community aliases are not misrepresented as personal follow-ups owed by Chris.
+
+Delivery is also opinionated: the skill builds a complete HTML document, saves it to `output/`, verifies the artifact exists, and sends the message by passing the saved file path as `body_file_path` with `content_type="HTML"`. That file-based send path is required to preserve Outlook rendering.
+
+### How to Build It
+
+Place the `SKILL.md` file at:
+
+```
+cowork/
+  weekday-morning-briefing/
+    SKILL.md
+```
+
+The front matter includes `name`, `description`, and `cowork` metadata with `category` and `icon` fields. No additional repository files are required, but tenant-specific recipient addresses and branding values must be supplied at runtime.
+
+### How to Use It
+
+- *"Send my weekday morning briefing."*
+- *"Give me my weekday briefing."*
+- *"Run my weekday briefing."*
+- *"Start my workday."*
+- *"What did I miss overnight?"*
+
+### Key Design Principles
+
+- **Identity and workday guardrails.** This skill is only for Chris McNulty on a workday start; other users should fall back to the general `morning-briefing` skill.
+- **Freshness before fullness.** Weather, sports, and enterprise AI sections prefer omission over stale filler; every AI news item must be date-verified inside the last 24 hours.
+- **File-based HTML delivery.** The email body is sent from a saved HTML file, not an inline string, to avoid escaped or flattened rendering in Outlook.
+
+---
+
+## 6. Synozur Board
 
 ### What It Is
 
@@ -333,7 +386,7 @@ The front matter requires `name` and `description`. No additional configuration 
 
 ---
 
-## 6. Marketing Skills Bundle
+## 7. Marketing Skills Bundle
 
 ### What It Is
 
@@ -349,7 +402,7 @@ The Marketing Skills Bundle (`copilot-cowork-marketing`) is a chained set of ten
 
 ### How It Works
 
-An onboarding installer (`install-marketing-skills`) runs first — it interviews the user with Work IQ-drafted answers from their M365 data, captures brand colors, fonts, and logos, and writes a `variables.md` and `brand-assets.md` file to a SharePoint location. All ten downstream skills read from `variables.md` so company-specific values are defined once.
+An onboarding installer (`install-marketing-skills`) runs first — it interviews the user with Work IQ-drafted answers from their M365 data, captures brand colors, fonts, and logos, and writes a `variables.md` and `brand-assets.md` file to a SharePoint location. All nine downstream skills read from `variables.md` so company-specific values are defined once.
 
 The ten skills chain in sequence: `positioning-researcher` outputs a competitive dossier that feeds `content-strategist`'s editorial calendar; `copywriter` drafts from those briefs; `repurposing-engine` converts each long-form piece into eight to ten cross-channel assets; `seo-aeo-optimizer` handles keyword mapping and AI search signals; `distribution-planner` maps each asset to the right channel and timing; and `performance-analyst` closes the loop by feeding pipeline and engagement data back into the editorial calendar. `branded-doc-generator` and `branded-deck-generator` produce publish-ready Word and PowerPoint files from any confirmed draft.
 
@@ -392,7 +445,7 @@ After ingesting the folder, run `install-marketing-skills` first. The installer 
 
 ---
 
-## 7. Sales Harness Bundle
+## 8. Sales Harness Bundle
 
 ### What It Is
 
@@ -451,11 +504,60 @@ See `sales-harness-bundle/README.md` for the full placeholder list, OneDrive fol
 
 ---
 
+
+## 9. Spot Financial Outliers
+
+### What It Is
+
+Spot Financial Outliers reviews a financial statement — income statement, balance sheet, or cash flow — and identifies values that appear materially unusual compared with prior periods, peer line items, or expected financial patterns. It is an analytical review skill, not a modeling, audit, or compliance opinion workflow.
+
+### When to Use It
+
+- When a finance leader wants a fast anomaly review of an uploaded statement before a leadership meeting
+- When quarter-over-quarter or year-over-year changes need to be screened for unusual movement
+- When a statement has many line items and the user wants help ranking what is worth attention
+- When the source file is structured data, commonly Excel, and the goal is interpretation rather than editing formulas
+- When a reviewer needs quantified flags without speculating about the root cause
+
+### How It Works
+
+The skill first locates the source statement, typically in `input/`, and reads the data with the xlsx skill so every period column and line item is available for computation. It then identifies the statement type and applies several outlier checks: period-over-period variance, ratio-based anomalies, peer-category inconsistencies, and structural red flags such as unexpected negative values or major swings without obvious offsets elsewhere.
+
+Potential findings are ranked by materiality so the response surfaces only meaningful deviations. The output starts with a short summary, followed by a concise list of flagged line items using the statement's exact labels and quantified deltas where possible. Each finding is framed carefully as a potential anomaly, a likely business-driven change, or an item that needs additional context.
+
+### How to Build It
+
+Place the `SKILL.md` file at:
+
+```
+cowork/
+  spot-financial-outliers/
+    SKILL.md
+```
+
+The front matter includes `name`, `description`, and `cowork` metadata with `category` and `icon` fields. The skill depends on the xlsx skill for spreadsheet extraction but does not require additional repository-local configuration.
+
+### How to Use It
+
+- *"Spot outliers in this income statement."*
+- *"Review this balance sheet for unusual numbers."*
+- *"Do any of these expenses look out of line?"*
+- *"Analyze this cash flow statement and highlight anomalies for leadership."*
+- *"Check this financial statement for unusual values."*
+
+### Key Design Principles
+
+- **Do the math, don't guess.** Variances, ratios, and structural checks are computed from the statement data rather than inferred by inspection.
+- **Materiality over noise.** Small fluctuations are suppressed so attention stays on changes that are meaningfully unusual.
+- **Analytical, not authoritative.** The skill flags what deserves follow-up, but it does not issue audit conclusions, accounting judgments, or compliance opinions.
+
+---
+
 # Copilot in SharePoint Skills
 
 ---
 
-## 8. Content Expiration Sentinel
+## 10. Content Expiration Sentinel
 
 ### What It Is
 
@@ -521,7 +623,7 @@ The front matter requires `name` and `description`. Unlike Cowork skills, ShareP
 
 ---
 
-## 9. Onboarding Path Synthesizer
+## 11. Onboarding Path Synthesizer
 
 ### What It Is
 
@@ -596,7 +698,7 @@ The front matter requires `name` and `description`. The skill is activated by Co
 
 ---
 
-## 10. Process Compliance First-Pass
+## 12. Process Compliance First-Pass
 
 ### What It Is
 
@@ -666,7 +768,7 @@ The front matter requires `name` and `description`. The skill depends on a confi
 
 ---
 
-## 11. Excel to Branded HTML Dashboard
+## 13. Excel to Branded HTML Dashboard
 
 ### What It Is
 
@@ -716,7 +818,7 @@ The front matter requires `name` and `description`. The skill is activated by Co
 
 ---
 
-## 12. Library Destination Advisor
+## 14. Library Destination Advisor
 
 ### What It Is
 
