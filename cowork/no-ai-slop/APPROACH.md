@@ -149,19 +149,19 @@ Per your instruction to decide per conflict, these are flagged and **left
 unresolved**. The existing rules stay in force until you rule. Nothing below
 has been changed in the skills.
 
-### Conflict A: em-dash policy
+### Conflict A: em-dash policy (RESOLVED)
 
-- **`copywriter` and `repurposing-engine`:** "No em dashes." Absolute.
-- **`no-ai-slop`:** none in short copy, 1-2 allowed in longer drafts when they
-  clearly beat a comma or period.
-- **Where they actually disagree:** only long-form (blog, newsletter). For
-  LinkedIn, X, and email they agree (use none).
-- **Options:** (1) keep the absolute ban everywhere, ignore no-ai-slop's
-  allowance; (2) adopt no-ai-slop's "1-2 in long-form" and relax the ban for
-  blog/newsletter only; (3) something in between (e.g. ban in social, allow in
-  blog).
-- **Recommendation:** option 1 for now. The absolute ban is simpler to enforce
-  and the cost is low.
+**Decision:** em dashes are banned outright, in every format and length. Edit
+every one out; a colon, comma, or plain hyphen is fine. This is a house rule
+and it overrides `no-ai-slop`'s "1-2 in longer drafts" allowance.
+
+**Applied:** the vendored `no-ai-slop` `SKILL.md` and `eval.md` were edited to
+the outright ban, marked inline as a house override and recorded in `SOURCE.md`.
+The `composer`, `copywriter`, and `repurposing-engine` notes state the resolved
+rule. No further action.
+
+Background: the two rules only ever disagreed on long-form (blog, newsletter);
+for LinkedIn, X, and email they already agreed on none.
 
 ### Conflict B: absolute blocklist vs. judgment-based editing
 
@@ -209,6 +209,6 @@ draft sent to a prospect. Flagged for completeness.
    leverage). Additive references only; existing rules untouched.
 3. Add lighter references to `outbound-voice`, `cadence-rules`, and
    `content-strategist`.
-4. Resolve conflicts A and B once you rule on §4, then update the affected
-   rules if needed.
+4. Conflict A (em dashes) is resolved: banned outright. Conflict B (word list)
+   and conflict C (the word "harness") still await a ruling in §4.
 5. Leave the analysis and formatting skills on detect-mode-on-request.

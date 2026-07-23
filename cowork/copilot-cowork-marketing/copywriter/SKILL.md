@@ -77,7 +77,7 @@ attribution, and synonym cycling. Make the minimum edit and keep the brand
 voice. The rules already in this skill (sentence case, no em dashes, no
 hashtags, no corporate filler) remain authoritative where they overlap.
 
-Note: this skill's absolute "no em dashes" rule and `no-ai-slop`'s "1-2 in
-longer drafts" allowance conflict for long-form (blog, newsletter); they agree
-elsewhere (use none). That conflict is pending a decision in
-`cowork/no-ai-slop/APPROACH.md` §4A. Until then, keep no em dashes.
+Em dashes: banned outright, in every format and length. Edit every one out;
+use a colon, comma, or plain hyphen instead. This house rule overrides
+`no-ai-slop`'s "1-2 in longer drafts" allowance (resolved in
+`cowork/no-ai-slop/APPROACH.md` §4A).

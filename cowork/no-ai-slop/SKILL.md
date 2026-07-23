@@ -65,7 +65,7 @@ If the goal is unclear, ask what the reader should think, feel, or do after read
 - **Fake-profound kickers.** Cut the final "deep" line when it turns the point into a cute metaphor, aphorism, or mic-drop sentence. Do not rewrite it into a better metaphor. Do not preserve the rhythm. Delete it, then end on the clearest concrete sentence already in the draft. If the ending needs more closure, add a plain takeaway or next action.
 - **Summary-recap endings.** "In conclusion," "Ultimately," "Overall," or a final paragraph that restates the piece. The reader was just there. End on the last concrete point, takeaway, or next action instead.
 - **Formatting slop.** Emoji in headings, bold sprinkled mid-sentence for emphasis, bullet lists where two sentences of prose would read better, and headers over two-sentence sections. Format should follow the content, not decorate it.
-- **Em dashes.** Do not use them as a default rhythm crutch. In short copy, use none. In longer drafts, 1-2 are fine if they clearly beat commas, periods, or parentheses. Remove clusters and decorative dashes.
+- **Em dashes.** Never use them, in any length of copy. Edit every one out. Use a colon, a comma, or a plain hyphen instead. (Synozur house rule; overrides the upstream skill, which allows 1-2 in longer drafts. See `SOURCE.md`.)
 
 ## Workflow
 

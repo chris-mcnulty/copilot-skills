@@ -93,10 +93,12 @@ Ordering matters. The compliance banned-phrase scan is the hard-fail gate and
 runs first; this structural pass runs after it, then **re-run the banned-phrase
 scan** so the polish never reintroduces a banned phrase. `no-ai-slop`'s own
 word list is judgment-based and does NOT override the compliance hard-fail
-gate. (Two rule conflicts between this skill and `no-ai-slop` — the em-dash
-policy and the absolute-vs-judgment word list — are documented in
-`cowork/no-ai-slop/APPROACH.md` §4 and are pending a decision; until then the
-harness rules above remain authoritative.)
+gate (that word-list conflict is documented in `cowork/no-ai-slop/APPROACH.md`
+§4B and is still pending a decision; until then the harness banned-phrase list
+stays authoritative).
+
+Em dashes: banned outright in every draft. Edit every one out; use a colon,
+comma, or plain hyphen instead. House rule, resolved in `APPROACH.md` §4A.
 
 ## For a reply (state=replied)
 
