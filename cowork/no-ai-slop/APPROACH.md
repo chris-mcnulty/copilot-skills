@@ -110,8 +110,9 @@ The prose-producing surfaces and how each changes:
   template, not on every send. The current `outbound-email-v1` steps are
   already tight; this keeps future templates clean.
 
-Left untouched pending a decision: `compliance/banned-phrases.md` (see §4,
-conflict B).
+Left untouched by decision: `compliance/banned-phrases.md` stays an absolute
+hard-fail gate; `no-ai-slop`'s voice-preserving word handling neither overrides
+nor adds to it (see §4, conflict B).
 
 ### Marketing Skills
 
@@ -163,30 +164,31 @@ rule. No further action.
 Background: the two rules only ever disagreed on long-form (blog, newsletter);
 for LinkedIn, X, and email they already agreed on none.
 
-### Conflict B: absolute blocklist vs. judgment-based editing
+### Conflict B: absolute blocklist vs. judgment-based editing (RESOLVED)
 
-- **`compliance/banned-phrases.md`:** any listed phrase is a hard fail, redraft.
-  No exceptions. This is a compliance gate.
-- **`no-ai-slop`:** many of the same words, but "cut when empty, keep when it
-  carries emphasis, uncertainty, or the writer's rhythm."
-- **The tension:** if we let no-ai-slop's nuance override the harness gate, a
-  banned word could survive on a judgment call. That weakens a compliance
-  control.
-- **Options:** (1) keep the harness blocklist absolute and authoritative;
-  no-ai-slop's nuance applies only to words *not* on the compliance list;
-  (2) fold no-ai-slop's larger word list into the compliance blocklist as new
-  hard-fail terms (stricter); (3) replace the hard-fail gate with judgment
-  (looser, not recommended for outbound).
-- **Recommendation:** option 1, and optionally option 2 for the clearly-slop
-  additions (delve, foster, facilitate, streamline, robust, paradigm shift,
-  tapestry, realm, beacon). Keep the gate absolute.
+**Decision:** voice wins. `no-ai-slop`'s word list is treated as *default cuts*,
+not an absolute blocklist. Words like "utilize" and "facilitate" that are part
+of a writer's natural cadence are kept, because stripping them makes the writer
+sound less like themselves, not more human. `no-ai-slop`'s larger word list is
+**not** folded into the Sales Harness `compliance/banned-phrases.md` hard-fail
+gate.
 
-### Conflict C: the word "harness"
+**Applied:** the "Words to cut" list in `no-ai-slop`'s `SKILL.md` was relabeled
+"default cuts" with a house-override note; the `eval.md` word check was
+softened to match; both recorded in `SOURCE.md`. The `composer` note states
+that `no-ai-slop`'s word handling is voice-preserving and does not add to the
+compliance gate.
 
-`no-ai-slop` bans "harness" as a banned-outright word. Our product is literally
-the "Sales Harness." This only matters in customer-facing *output copy*, never
-in internal skill names or docs. No action needed unless "harness" appears in a
-draft sent to a prospect. Flagged for completeness.
+**Untouched:** `compliance/banned-phrases.md` stays an absolute hard-fail gate.
+It never listed the writer's natural words (no "utilize", no "facilitate"), so
+the two rules do not actually collide. The genuinely bad clichés it bans
+(game-changer, transformative, synergy, and the outbound clichés) remain
+hard-fails.
+
+### Conflict C: the word "harness" (RESOLVED)
+
+**Decision:** "harness" is a plain English word ("to put to use") and is not
+slop. It was removed from `no-ai-slop`'s word list. No other action.
 
 ## 5. How to verify it is working
 
@@ -209,6 +211,6 @@ draft sent to a prospect. Flagged for completeness.
    leverage). Additive references only; existing rules untouched.
 3. Add lighter references to `outbound-voice`, `cadence-rules`, and
    `content-strategist`.
-4. Conflict A (em dashes) is resolved: banned outright. Conflict B (word list)
-   and conflict C (the word "harness") still await a ruling in §4.
+4. Conflicts A (em dashes), B (word list), and C ("harness") are all resolved.
+   See §4 for each decision.
 5. Leave the analysis and formatting skills on detect-mode-on-request.

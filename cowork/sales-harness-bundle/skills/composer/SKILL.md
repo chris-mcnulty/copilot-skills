@@ -92,10 +92,10 @@ preserve the firm voice from `voice-dna.md`.
 Ordering matters. The compliance banned-phrase scan is the hard-fail gate and
 runs first; this structural pass runs after it, then **re-run the banned-phrase
 scan** so the polish never reintroduces a banned phrase. `no-ai-slop`'s own
-word list is judgment-based and does NOT override the compliance hard-fail
-gate (that word-list conflict is documented in `cowork/no-ai-slop/APPROACH.md`
-§4B and is still pending a decision; until then the harness banned-phrase list
-stays authoritative).
+word list is voice-preserving (it keeps words that are part of the firm's
+natural cadence) and does NOT override or add to the compliance hard-fail gate.
+The harness `compliance/banned-phrases.md` list stays absolute and
+authoritative (resolved in `cowork/no-ai-slop/APPROACH.md` §4B).
 
 Em dashes: banned outright in every draft. Edit every one out; use a colon,
 comma, or plain hyphen instead. House rule, resolved in `APPROACH.md` §4A.

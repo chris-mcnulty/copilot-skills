@@ -24,15 +24,28 @@ Apache-2.0 license. The skill content itself was authored by Peter Yang.
 
 ## What was changed
 
-`SKILL.md` and `eval.md` are carried over from the upstream repository with a
-single documented deviation, so the skill stays easy to re-sync.
+`SKILL.md` and `eval.md` are carried over from the upstream repository with two
+documented deviations, so the skill stays easy to re-sync.
 
-**Em-dash rule (Synozur house override).** Upstream allows 1-2 em dashes in
+**1. Em-dash rule (Synozur house override).** Upstream allows 1-2 em dashes in
 longer drafts. Synozur bans em dashes outright in any length of copy (edit
 every one out; use a colon, comma, or plain hyphen instead). This changes one
 bullet in `SKILL.md` ("Patterns to cut" -> "Em dashes") and one line in
-`eval.md` (check 8 under "Patterns to cut"). Both are marked inline. When
-re-syncing from upstream, re-apply this override.
+`eval.md` (check 8 under "Patterns to cut"). Both are marked inline.
+
+**2. Word list yields to voice (Synozur house override).** Upstream calls the
+first word list "banned outright." Synozur treats it as *default cuts* that
+voice preservation overrides: a word on the list that is genuinely part of the
+writer's natural cadence (for example some writers' "utilize" or "facilitate")
+is kept, not stripped. The word "harness" was removed from the list entirely
+(plain English for "put to use"). This changes the "Words to cut" heading and
+adds an override note in `SKILL.md`, and softens check 1 under "Words to cut"
+in `eval.md`. Both are marked inline. This keeps the skill consistent with its
+own top principle (preserve the writer's real voice) and does not touch the
+Sales Harness `compliance/banned-phrases.md` hard-fail gate, which stays
+absolute.
+
+When re-syncing from upstream, re-apply both overrides.
 
 No other Synozur-specific rules were merged into the skill. All bundle-specific
 integration lives in the consuming skills and in `APPROACH.md`, not here.

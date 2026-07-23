@@ -19,7 +19,7 @@ For detect requests, make sure the response names each pattern found with a quot
 
 ## Words to cut
 
-1. Are banned words, filler phrases, often-empty adverbs, and inflated claims removed unless quoted as examples?
+1. Are filler phrases, often-empty adverbs, and inflated claims removed unless quoted as examples? (Synozur house override: words on the "default cuts" list are removed only when they are generic filler. When such a word is genuinely part of the writer's natural cadence, keep it. Voice preservation wins over the list.)
 
 ## Patterns to cut
 

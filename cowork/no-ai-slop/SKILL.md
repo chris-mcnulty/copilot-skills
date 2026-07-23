@@ -41,7 +41,17 @@ If the goal is unclear, ask what the reader should think, feel, or do after read
 
 ## Words to cut
 
-**Banned outright:** delve, foster, leverage, utilize, facilitate, empower, streamline, robust, cutting-edge, paradigm shift, game changer, this is huge, this changes everything, tapestry, realm, beacon, multifaceted, meticulous, intricate, paramount, transformative, elevate, embark, supercharge, harness, ever-evolving.
+**Default cuts (not an absolute blocklist):** delve, foster, leverage, utilize, facilitate, empower, streamline, robust, cutting-edge, paradigm shift, game changer, this is huge, this changes everything, tapestry, realm, beacon, multifaceted, meticulous, intricate, paramount, transformative, elevate, embark, supercharge, ever-evolving.
+
+*(Synozur house override.* Upstream calls this list "banned outright." Voice
+preservation overrides it: when one of these words is genuinely part of the
+writer's natural cadence, keep it. Some writers say "utilize" or "facilitate"
+in their own voice, and cutting those makes them sound less like themselves,
+not more human. Cut a word here only when it is generic filler doing no work.
+The hype clichés (game changer, paradigm shift, transformative, supercharge,
+this changes everything) are the ones to cut on sight. "harness" was removed
+from the list; it is a plain English word meaning to put to use. See
+`SOURCE.md`.)*
 
 **Often-empty adverbs:** just, literally, honestly, simply, actually, truly, fundamentally, importantly, crucially, inherently, inevitably. Cut them when they add nothing. Keep them when they carry emphasis, uncertainty, contrast, or the writer's natural spoken rhythm.
 
