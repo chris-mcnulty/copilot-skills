@@ -33,6 +33,16 @@ A draft passes the voice test if a reviewer cannot tell whether it was written b
 4. Scan for banned phrases (see `compliance/banned-phrases.md` AND the banned-phrases section of `voice-dna.md`).
 5. Save the draft (either to the prospect MD file's `## Draft (pending approval)` section, or directly to Outlook Drafts via `CreateDraftMessage` — see `outlook-ops/SKILL.md`).
 
+## Structural complement: no-ai-slop
+
+The bans below and `voice-dna.md` cover slop *words*. They do not cover slop
+*structure*. The shared `no-ai-slop` skill (`cowork/no-ai-slop/`) is the
+structural complement: it catches binary contrasts, colon reveals,
+faux-insight setups, fake-profound endings, and robotic rhythm. The Composer
+runs it as a final pass after the voice draft (see `composer/SKILL.md`). Use
+the two together: `voice-dna.md` defines *how we sound*, `no-ai-slop` removes
+*how machines sound*. They are not interchangeable.
+
 ## Anti-patterns
 
 - "I hope this finds you well"

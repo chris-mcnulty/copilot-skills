@@ -21,6 +21,18 @@ Point Cowork at this folder and say **"install the marketing skills."** That run
 - **`branded-doc-generator`** — converts copywriter drafts into on-brand Word documents (.docx): one-pagers, briefs, case studies, reports, and executive summaries — using the colors, fonts, and logos captured during onboarding.
 - **`branded-deck-generator`** — converts content into on-brand PowerPoint decks (.pptx): pitch decks, campaign recaps, QBRs, exec briefings, and webinar decks — using the same brand assets.
 
+## Shared dependency: no-ai-slop
+
+`copywriter`, `repurposing-engine`, and `content-strategist` run a final
+structural editing pass with the shared **`no-ai-slop`** skill
+(`cowork/no-ai-slop/` in this repo). It removes AI-writing structure (binary
+contrasts, colon reveals, faux-insight setups, fake-profound endings, robotic
+rhythm) that the existing word-level rules cannot catch. It is a third-party
+MIT-licensed skill by Peter Yang, vendored with attribution; see
+`cowork/no-ai-slop/SOURCE.md` and the integration write-up in
+`cowork/no-ai-slop/APPROACH.md`. Install it alongside this library: copy
+`no-ai-slop/` into your skills directory too.
+
 ## How the skills chain
 
 - `positioning-researcher` output feeds `content-strategist` and `copywriter`.

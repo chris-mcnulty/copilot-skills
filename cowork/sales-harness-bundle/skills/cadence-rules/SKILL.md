@@ -62,5 +62,10 @@ When a prospect's frontmatter says `cadence_template_id: outbound-email-v1`, Cad
 ## Adding a new template
 
 1. Create a new file under `templates/` (e.g. `outbound-email-v2.md`).
-2. The voice owner reviews; another rep reviews.
-3. After review, the template ID is available for new campaigns. Existing in-flight leads keep using the template version they started on (immutable cadence — changing mid-stream changes the experiment).
+2. Run the copy through the shared `no-ai-slop` skill (`cowork/no-ai-slop/`) in
+   detect mode and fix anything it names. Templates are written once and reused
+   across every lead on that cadence, so a slop pattern here ships hundreds of
+   times. This is a design-time check on the template author, not a per-send
+   step (Cadence never rewrites a template at send time).
+3. The voice owner reviews; another rep reviews.
+4. After review, the template ID is available for new campaigns. Existing in-flight leads keep using the template version they started on (immutable cadence — changing mid-stream changes the experiment).

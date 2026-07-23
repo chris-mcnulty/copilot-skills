@@ -64,3 +64,9 @@ Reject and re-run if:
 - Target reader descriptions are generic ("B2B marketers" instead of a specific role + context).
 - Differentiation angle is missing or says "provide a comprehensive guide".
 - Calendar has fewer than 15 briefs.
+
+Light touch: the prose fields (topic titles, differentiation angles) seed what
+the copywriter writes later. Keep them plain and specific. If an angle reads as
+a slop pattern (binary contrast, faux-insight setup, importance puffery), run
+it through the shared `no-ai-slop` skill (`cowork/no-ai-slop/`) in detect mode
+and rephrase. The JSON structure is unaffected.
