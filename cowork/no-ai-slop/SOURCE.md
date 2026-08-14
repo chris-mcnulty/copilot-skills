@@ -1,7 +1,8 @@
 # Source and attribution
 
 This skill is **not** original Synozur work. It is a third-party skill vendored
-into this repository unchanged.
+into this repository, kept close to upstream with two documented house overrides
+(see "What was changed" below).
 
 - **Skill:** `no-ai-slop`
 - **Author:** Peter Yang

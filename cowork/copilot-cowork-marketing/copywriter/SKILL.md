@@ -78,6 +78,6 @@ voice. The rules already in this skill (sentence case, no em dashes, no
 hashtags, no corporate filler) remain authoritative where they overlap.
 
 Em dashes: banned outright, in every format and length. Edit every one out;
-use a colon, comma, or plain hyphen instead. This house rule overrides
-`no-ai-slop`'s "1-2 in longer drafts" allowance (resolved in
-`cowork/no-ai-slop/APPROACH.md` §4, Conflict A).
+use a colon, comma, or plain hyphen instead. The shared `no-ai-slop` skill
+already enforces this (Synozur house override; upstream had allowed 1-2 in
+longer drafts). See `cowork/no-ai-slop/APPROACH.md` §4, Conflict A.

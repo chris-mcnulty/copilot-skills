@@ -69,9 +69,9 @@ colon reveals, faux-insight setups, trailing "-ing" pseudo-analysis,
 fake-profound kicker lines, summary-recap endings, and robotic rhythm. Make the
 minimum edit and keep the brand voice. This skill's rules (sentence case, no em
 dashes, no hashtags, no corporate filler) remain authoritative where they
-overlap. Em dashes are banned outright in every format and length, overriding
-`no-ai-slop`'s long-form allowance (resolved in
-`cowork/no-ai-slop/APPROACH.md` §4, Conflict A).
+overlap. Em dashes are banned outright in every format and length; the shared
+`no-ai-slop` skill already enforces this (Synozur house override; upstream had
+allowed 1-2 in long-form). See `cowork/no-ai-slop/APPROACH.md` §4, Conflict A.
 
 ## Output guardrails
 

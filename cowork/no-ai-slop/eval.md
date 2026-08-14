@@ -1,6 +1,6 @@
 # No AI slop eval
 
-Use this after the rewrite. Answer each check with pass or fail. If any check fails, fix the draft before returning it.
+Use this after the edit. Answer each check with pass or fail. If any check fails, fix the draft before returning it.
 
 For detect requests, make sure the response names each pattern found with a quoted line and a short fix, without rewriting the draft.
 
