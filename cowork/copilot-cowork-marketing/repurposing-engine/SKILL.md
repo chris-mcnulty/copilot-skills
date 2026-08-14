@@ -59,6 +59,20 @@ Prioritize:
 - Case study results become short-form video scripts.
 - Tactical tips become email newsletter snippets.
 
+## Final anti-slop pass
+
+Before delivering, run each asset through the shared `no-ai-slop` skill
+(`cowork/no-ai-slop/`) in edit mode. Repurposing multiplies one source into
+many assets, so a single slop pattern in the source becomes ten in the output.
+Strip the structural tells the guardrails below don't cover: binary contrasts,
+colon reveals, faux-insight setups, trailing "-ing" pseudo-analysis,
+fake-profound kicker lines, summary-recap endings, and robotic rhythm. Make the
+minimum edit and keep the brand voice. This skill's rules (sentence case, no em
+dashes, no hashtags, no corporate filler) remain authoritative where they
+overlap. Em dashes are banned outright in every format and length; the shared
+`no-ai-slop` skill already enforces this (Synozur house override; upstream had
+allowed 1-2 in long-form). See `cowork/no-ai-slop/APPROACH.md` §4, Conflict A.
+
 ## Output guardrails
 
 Reject and re-run if:
@@ -68,3 +82,4 @@ Reject and re-run if:
 - Two or more assets cover the same core idea.
 - Video scripts read like blog posts instead of spoken language.
 - Any asset uses hashtags, em dashes, or corporate filler.
+- Any asset still carries a structural AI tell after the anti-slop pass.

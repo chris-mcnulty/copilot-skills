@@ -65,3 +65,19 @@ Generate the draft, then run the self-check below before outputting.
 - Is the CTA clear and tied to the content? If it's generic ("follow for more"), replace it.
 - Does it sound like a person wrote it or a brand account? If brand account, rewrite.
 - Word count within platform limits? If over, cut.
+
+## Final anti-slop pass
+
+After the self-check, run the shared `no-ai-slop` skill (`cowork/no-ai-slop/`)
+in edit mode to strip structural AI tells the rules above don't cover: binary
+contrasts ("it's not X, it's Y"), colon reveals, faux-insight setups ("what
+most people miss"), trailing "-ing" pseudo-analysis, fake-profound kicker
+lines, summary-recap endings, robotic rhythm, importance puffery, weasel
+attribution, and synonym cycling. Make the minimum edit and keep the brand
+voice. The rules already in this skill (sentence case, no em dashes, no
+hashtags, no corporate filler) remain authoritative where they overlap.
+
+Em dashes: banned outright, in every format and length. Edit every one out;
+use a colon, comma, or plain hyphen instead. The shared `no-ai-slop` skill
+already enforces this (Synozur house override; upstream had allowed 1-2 in
+longer drafts). See `cowork/no-ai-slop/APPROACH.md` §4, Conflict A.

@@ -78,6 +78,28 @@ Never call `Bash`, `WebSearch`, or `WebFetch`. The Prospector did the research; 
 - Never include pricing, contracts, or close language.
 - Per-day send cap: if `DAILY_SEND_CAP_EMAIL` is already met for the operator, stop drafting for today and report.
 
+## Final anti-slop pass
+
+After the draft passes voice and before you write it out, run a structural
+cleanup with the shared `no-ai-slop` skill (`cowork/no-ai-slop/`) in edit mode.
+The banned-phrase list above catches slop *words*; this pass catches slop
+*structure* that a word list cannot: binary contrasts ("it's not X, it's Y"),
+colon reveals, faux-insight setups ("what most people miss"), trailing "-ing"
+pseudo-analysis, fake-profound kicker lines, summary-recap endings, robotic
+rhythm, importance puffery, and weasel attribution. Make the minimum edit and
+preserve the firm voice from `voice-dna.md`.
+
+Ordering matters. The compliance banned-phrase scan is the hard-fail gate and
+runs first; this structural pass runs after it, then **re-run the banned-phrase
+scan** so the polish never reintroduces a banned phrase. `no-ai-slop`'s own
+word list is voice-preserving (it keeps words that are part of the firm's
+natural cadence) and does NOT override or add to the compliance hard-fail gate.
+The harness `compliance/banned-phrases.md` list stays absolute and
+authoritative (resolved in `cowork/no-ai-slop/APPROACH.md` §4, Conflict B).
+
+Em dashes: banned outright in every draft. Edit every one out; use a colon,
+comma, or plain hyphen instead. House rule, resolved in `APPROACH.md` §4, Conflict A.
+
 ## For a reply (state=replied)
 
 - Open the prospect MD file. Read the `## Conversation` and `## Notes` sections to ground the reply in what the prospect actually said.

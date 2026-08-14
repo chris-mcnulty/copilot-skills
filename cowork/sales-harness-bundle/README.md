@@ -57,6 +57,19 @@ This bundle is the genericized version of a working harness. Replace the `[YOUR_
 
 ---
 
+## Shared dependency: no-ai-slop
+
+The Composer runs a final structural editing pass, and new cadence templates
+are screened, with the shared **`no-ai-slop`** skill (`cowork/no-ai-slop/` in
+this repo). It removes AI-writing structure (binary contrasts, colon reveals,
+faux-insight setups, fake-profound endings, robotic rhythm) that the
+word-level banned-phrase list cannot catch. It is a third-party MIT-licensed
+skill by Peter Yang, vendored with attribution; see `cowork/no-ai-slop/SOURCE.md`
+and the integration write-up in `cowork/no-ai-slop/APPROACH.md`. Install it
+alongside this bundle: copy `no-ai-slop/` into your skills directory too.
+
+---
+
 ## Installation
 
 ### 1. Drop the skills folder into your Copilot Cowork personal skills directory
