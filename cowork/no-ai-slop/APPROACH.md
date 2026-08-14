@@ -112,7 +112,7 @@ The prose-producing surfaces and how each changes:
 
 Left untouched by decision: `compliance/banned-phrases.md` stays an absolute
 hard-fail gate; `no-ai-slop`'s voice-preserving word handling neither overrides
-nor adds to it (see §4, conflict B).
+nor adds to it (see §4, Conflict B).
 
 ### Marketing Skills
 
@@ -141,14 +141,13 @@ nor adds to it (see §4, conflict B).
 
 Each wired skill gets a short block that (a) points to the shared skill, (b)
 lists the structural patterns to apply, and (c) states explicitly that the
-skill's own existing rules remain authoritative and that the conflicts in §4
-are not yet resolved. No existing rule text is edited.
+skill's own existing rules remain authoritative except where a §4 resolution
+changed them. No rule was changed without a recorded decision.
 
-## 4. Conflicts requiring your decision
+## 4. Conflicts and their resolutions
 
-Per your instruction to decide per conflict, these are flagged and **left
-unresolved**. The existing rules stay in force until you rule. Nothing below
-has been changed in the skills.
+Each conflict was decided per your ruling. All three are now resolved; the
+decision and the changes applied are recorded under each heading below.
 
 ### Conflict A: em-dash policy (RESOLVED)
 

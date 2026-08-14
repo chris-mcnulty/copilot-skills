@@ -80,4 +80,4 @@ hashtags, no corporate filler) remain authoritative where they overlap.
 Em dashes: banned outright, in every format and length. Edit every one out;
 use a colon, comma, or plain hyphen instead. This house rule overrides
 `no-ai-slop`'s "1-2 in longer drafts" allowance (resolved in
-`cowork/no-ai-slop/APPROACH.md` §4A).
+`cowork/no-ai-slop/APPROACH.md` §4, Conflict A).

@@ -95,10 +95,10 @@ scan** so the polish never reintroduces a banned phrase. `no-ai-slop`'s own
 word list is voice-preserving (it keeps words that are part of the firm's
 natural cadence) and does NOT override or add to the compliance hard-fail gate.
 The harness `compliance/banned-phrases.md` list stays absolute and
-authoritative (resolved in `cowork/no-ai-slop/APPROACH.md` §4B).
+authoritative (resolved in `cowork/no-ai-slop/APPROACH.md` §4, Conflict B).
 
 Em dashes: banned outright in every draft. Edit every one out; use a colon,
-comma, or plain hyphen instead. House rule, resolved in `APPROACH.md` §4A.
+comma, or plain hyphen instead. House rule, resolved in `APPROACH.md` §4, Conflict A.
 
 ## For a reply (state=replied)
 
