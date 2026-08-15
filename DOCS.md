@@ -1,6 +1,6 @@
 # Enterprise AI Skills Documentation
 
-This document covers all fourteen AI skill entries in this repository — nine personal skills and bundles built for **Copilot Cowork** and five organizational skills built for **Copilot in SharePoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
+This document covers all fifteen AI skill entries in this repository — nine personal skills and bundles built for **Copilot Cowork** and six organizational skills built for **Copilot in SharePoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
 
 ---
 
@@ -23,6 +23,7 @@ This document covers all fourteen AI skill entries in this repository — nine p
 12. [Process Compliance First-Pass](#12-process-compliance-first-pass)
 13. [Excel to Branded HTML Dashboard](#13-excel-to-branded-html-dashboard)
 14. [Library Destination Advisor](#14-library-destination-advisor)
+15. [SharePoint List Dashboard](#15-sharepoint-list-dashboard)
 
 **Summary**
 - [Copilot Cowork vs SharePoint Skills](#copilot-cowork-vs-sharepoint-skills)
@@ -865,6 +866,58 @@ The front matter requires `name` and `description`. The skill is activated by Co
 - **No upload on behalf of the user.** The skill recommends only — it never performs the upload, pre-fills metadata, or creates new libraries without explicit user confirmation.
 - **Permission-gated recommendations.** Libraries where the user does not have at least Contribute access are excluded before any scoring or ranking occurs.
 - **Honest about poor matches.** When no library scores well, the skill says so directly and describes what kind of library would be appropriate — it does not force a low-confidence recommendation.
+
+---
+
+## 15. SharePoint List Dashboard
+
+### What It Is
+
+The SharePoint List Dashboard skill turns any SharePoint list into a single, self-contained HTML dashboard that reads the list **live** every time it loads. The defining property is that the generated file holds no list data. It carries only schema, layout, styling, and query logic, and fetches every row from the SharePoint REST API at page load using the signed-in viewer's session. The result is an interactive, always-current report — KPI tiles, charts, and a sortable table — styled to match the host site's theme colors, fonts, and logo so it looks like the site owner built it.
+
+### When to Use It
+
+- When a list owner wants a visual, always-current summary of a list rather than a static export that goes stale the moment it is saved
+- When a project tracker, request queue, or status list needs KPI tiles and charts embedded on a SharePoint page
+- When a report must reflect each viewer's own permissions, showing only the rows that person is allowed to see
+- When a dashboard needs to survive a site rename or a move between environments without being rebuilt
+- When stakeholders need a point-in-time CSV export from a live view without touching the underlying list
+
+### How It Works
+
+The skill first resolves the list, capturing the site absolute URL, the list title, and the list GUID. It queries by GUID, not title, so a later rename does not break the dashboard. It then reads the list schema — internal and display names, field types, choice options, and lookup or person targets — and this schema is the only list content baked into the file. Before generating anything, it runs the exact query the dashboard will run once, to confirm the fields and expansions are correct and to note the item count, then discards those rows rather than embedding them.
+
+Widgets are chosen by field type: choice and boolean fields become donuts with status filter chips, dates become timelines, numbers become KPI tiles and bar charts, and people and lookups become ranked bars. At runtime the file fetches from the REST API with `credentials: 'same-origin'`, follows the response's OData next-link for pagination (reading whichever of `odata.nextLink` or `@odata.nextLink` the negotiated mode returns), renders progressively, auto-refreshes every five minutes with a manual refresh button, and pauses when the tab is hidden. Every widget renders loading, empty, and error states, and failures are shown to the viewer rather than swallowed. Branding is applied as CSS custom properties read from the site theme, with no hard-coded hex values outside the `:root` fallback block, so the dashboard re-themes itself when the site theme changes.
+
+The output is one self-contained `.html` file with charts drawn in inline SVG or canvas and no CDN dependencies, since the SharePoint embed sandbox blocks most external scripts. It is hosted in the site's `SiteAssets` library — the same site collection as the list — which is what makes the credentialed same-origin fetch work, and surfaced with a File viewer or Embed web part.
+
+### How to Build It
+
+Place the `SKILL.md` file at:
+
+```
+sharepoint/
+  sharepoint-list-dashboard/
+    SKILL.md
+```
+
+The front matter requires `name` and `description`. The skill is activated by Copilot in SharePoint when a user asks to build a dashboard, chart, or live report from a SharePoint list.
+
+### How to Use It
+
+- *"Build a dashboard from this list."*
+- *"Visualize our project tracker."*
+- *"Create a live report for the Requests list."*
+- *"Turn my list into charts."*
+- *"Make a status dashboard I can put on our site."*
+
+### Key Design Principles
+
+- **The file holds no data.** Schema, layout, and query logic are baked in; every row is fetched live at load time. Build-time data access is used only to discover the schema and validate the query, never to populate the deliverable.
+- **Same-origin hosting is a requirement, not a preference.** The dashboard authenticates with the viewer's session cookie, which only works when the file is served from the same site collection as the list — hence hosting in `SiteAssets`.
+- **Permissions are enforced per viewer.** Two people opening the same dashboard may legitimately see different row counts. The footer states this so it is not mistaken for a bug.
+- **On-brand from the site theme.** Colors, fonts, and logo come from the host site with no hard-coded hex outside the `:root` fallback, so the dashboard stays consistent with the site and re-themes automatically.
+- **Threshold-aware and accessible.** Above the 5,000-item list view threshold the skill filters on an indexed column or aggregates by group and surfaces the constraint; output is responsive, keyboard-reachable, and announces refreshes through an `aria-live` region.
 
 ---
 
