@@ -112,9 +112,15 @@ Runtime rules:
   cookie. This works when the file is served from the same site collection as
   the list — which is why §8 requires hosting it in `SiteAssets`. Cross-site
   hosting will fail auth; do not attempt to work around it with tokens.
-- **Follow pagination.** Loop on the `odata.nextLink` in each response until it
-  is absent. Render progressively — update charts after each page so a large
-  list shows partial results immediately rather than a long blank wait.
+- **Follow pagination.** Read the next-page link from each response and loop
+  until it is absent. The `_api` REST endpoint is OData v3, so with
+  `odata=nometadata` the property is `odata.nextLink` (no `@`); the OData v4
+  spelling `@odata.nextLink` and the verbose-mode `d.__next` also appear
+  depending on the negotiated mode. Read whichever is present rather than
+  hard-coding one, e.g.
+  `const next = data['odata.nextLink'] ?? data['@odata.nextLink'] ?? data.d?.__next;`
+  Render progressively — update charts after each page so a large list shows
+  partial results immediately rather than a long blank wait.
 - **Derive site URL from context, don't hard-code it.** Read
   `_spPageContextInfo.webAbsoluteUrl` when present so the dashboard survives a
   site rename or a move between environments; fall back to the resolved URL

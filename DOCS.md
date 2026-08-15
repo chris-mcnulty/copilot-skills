@@ -1,6 +1,6 @@
 # Enterprise AI Skills Documentation
 
-This document covers all fourteen AI skill entries in this repository — nine personal skills and bundles built for **Copilot Cowork** and five organizational skills built for **Copilot in SharePoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
+This document covers all fifteen AI skill entries in this repository — nine personal skills and bundles built for **Copilot Cowork** and six organizational skills built for **Copilot in SharePoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
 
 ---
 
@@ -887,7 +887,7 @@ The SharePoint List Dashboard skill turns any SharePoint list into a single, sel
 
 The skill first resolves the list, capturing the site absolute URL, the list title, and the list GUID. It queries by GUID, not title, so a later rename does not break the dashboard. It then reads the list schema — internal and display names, field types, choice options, and lookup or person targets — and this schema is the only list content baked into the file. Before generating anything, it runs the exact query the dashboard will run once, to confirm the fields and expansions are correct and to note the item count, then discards those rows rather than embedding them.
 
-Widgets are chosen by field type: choice and boolean fields become donuts with status filter chips, dates become timelines, numbers become KPI tiles and bar charts, and people and lookups become ranked bars. At runtime the file fetches from the REST API with `credentials: 'same-origin'`, follows `odata.nextLink` pagination, renders progressively, auto-refreshes every five minutes with a manual refresh button, and pauses when the tab is hidden. Every widget renders loading, empty, and error states, and failures are shown to the viewer rather than swallowed. Branding is applied as CSS custom properties read from the site theme, with no hard-coded hex values outside the `:root` fallback block, so the dashboard re-themes itself when the site theme changes.
+Widgets are chosen by field type: choice and boolean fields become donuts with status filter chips, dates become timelines, numbers become KPI tiles and bar charts, and people and lookups become ranked bars. At runtime the file fetches from the REST API with `credentials: 'same-origin'`, follows the response's OData next-link for pagination (reading whichever of `odata.nextLink` or `@odata.nextLink` the negotiated mode returns), renders progressively, auto-refreshes every five minutes with a manual refresh button, and pauses when the tab is hidden. Every widget renders loading, empty, and error states, and failures are shown to the viewer rather than swallowed. Branding is applied as CSS custom properties read from the site theme, with no hard-coded hex values outside the `:root` fallback block, so the dashboard re-themes itself when the site theme changes.
 
 The output is one self-contained `.html` file with charts drawn in inline SVG or canvas and no CDN dependencies, since the SharePoint embed sandbox blocks most external scripts. It is hosted in the site's `SiteAssets` library — the same site collection as the list — which is what makes the credentialed same-origin fetch work, and surfaced with a File viewer or Embed web part.
 
