@@ -1,10 +1,11 @@
 # copilot-skills
-repository of markdown skills for Copilot Cowork and for Copilot in SharePoint
+repository of markdown skills for Copilot Cowork, Copilot in SharePoint, and Copilot in PowerPoint
 
 ## Folder structure
 
 - `cowork/` for Copilot Cowork skills
 - `sharepoint/` for Copilot in SharePoint skills
+- `powerpoint/` for Copilot in PowerPoint skills
 
 Create one folder per skill under each platform folder, and store that skill's markdown files in its folder.
 
