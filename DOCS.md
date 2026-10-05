@@ -1,6 +1,6 @@
 # Enterprise AI Skills Documentation
 
-This document covers all fifteen AI skill entries in this repository — nine personal skills and bundles built for **Copilot Cowork** and six organizational skills built for **Copilot in SharePoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
+This document covers all sixteen AI skill entries in this repository — nine personal skills and bundles built for **Copilot Cowork**, six organizational skills built for **Copilot in SharePoint**, and one skill built for **Copilot in PowerPoint**. Each section explains what the skill does, when to use it, how it works, and how to put it into practice.
 
 ---
 
@@ -25,8 +25,11 @@ This document covers all fifteen AI skill entries in this repository — nine pe
 14. [Library Destination Advisor](#14-library-destination-advisor)
 15. [SharePoint List Dashboard](#15-sharepoint-list-dashboard)
 
+**Copilot in PowerPoint Skills**
+16. [PowerPoint Master Realignment](#16-powerpoint-master-realignment)
+
 **Summary**
-- [Copilot Cowork vs SharePoint Skills](#copilot-cowork-vs-sharepoint-skills)
+- [Copilot Cowork vs SharePoint vs PowerPoint Skills](#copilot-cowork-vs-sharepoint-vs-powerpoint-skills)
 - [How Skills Scale in an Organization](#how-skills-scale-in-an-organization)
 
 ---
@@ -921,23 +924,97 @@ The front matter requires `name` and `description`. The skill is activated by Co
 
 ---
 
-# Copilot Cowork vs SharePoint Skills
+# Copilot in PowerPoint Skills
 
-These two skill types serve different purposes, live in different environments, and operate under different governance models.
+---
+
+## 16. PowerPoint Master Realignment
+
+### What It Is
+
+Decks that are assembled by copying slides from other presentations quietly accumulate extra slide masters and layouts. Over time, titles drift out of position, fonts stop matching, and the file carries several near-identical masters that nobody owns. The PowerPoint Master Realignment skill repairs that drift. It maps each in-scope slide to the best **compatible** layout under one approved primary master, restores placeholder geometry and inherited styles where the editing environment genuinely supports a reset, and retires redundant masters only after it has verified that nothing still depends on them. Its goal is a clean, consistent deck with every piece of content intact, not the lowest possible master count.
+
+### When to Use It
+
+- After building a deck from slides pasted out of several other presentations, when layouts and styles no longer line up
+- When a deck needs to be brought back onto the organization's approved template before it goes to a client or leadership audience
+- When the Slide Master view shows several duplicate or orphaned masters and you want them consolidated safely
+- When you need an audit of which slides could move to the primary master, without changing anything yet
+- When a bounded range of slides (for example, slides 8–15) needs to be reset to the best layouts under a specific master
+
+It is not the right tool for creating a new deck, rewriting a presentation's story, general visual redesign, or simply switching a theme. Those belong to the general PowerPoint editing workflow.
+
+### How It Works
+
+The skill starts by confirming the source deck, the scope, and the primary master, and by checking what the available tools can actually do. It is explicit that assigning a new layout is **not** the same as PowerPoint's Reset: a layout change can leave local positions and formatting untouched, so the skill tracks the two outcomes separately. If the environment can only inspect a deck, the skill produces a mapping plan and native PowerPoint steps rather than claiming edits it did not make.
+
+Before any change, it works on a separately named copy and captures a baseline: slide order and IDs, hidden slides, notes, master and layout counts, before-render images, and an inventory of charts, tables, media, links, alt text, animations, and other features at risk. It then builds a dependency graph of presentation, masters, layouts, slides, and shared parts such as themes, images, and fonts, using stable IDs rather than display names, since duplicate names are common after copy and paste.
+
+Mappings are scored in a fixed priority order: semantic roles first (title, body, comparison columns, chart, table, picture, and so on), then placeholder compatibility and capacity, then normalized geometry, then reading order and hierarchy, with layout name used only as a weak tie-breaker. Candidates that would drop content, merge distinct blocks, or force a chart into a text placeholder are rejected outright. Each proposed mapping carries a high, medium, or low confidence label with a stated reason, and the user approves the plan before anything is applied. Medium- and low-confidence cases are held for the user's decision rather than resolved arbitrarily.
+
+Approved mappings are piloted on one representative slide per pattern, then applied in bounded batches. Freeform content such as pasted text boxes, logos, and screenshots is retained in place and flagged for review rather than deleted or converted. Every changed slide is re-rendered and checked for clipping, overflow, lost content, and altered reading order. Only after slides pass verification does the skill recompute references across the whole deck and remove approved, verified-unused layouts and masters. If safe deletion is not supported, it reports "remapping complete; consolidation deferred," and zero deletions can be the correct result.
+
+### How to Build It
+
+Place the `SKILL.md` file at:
+
+```
+powerpoint/
+  powerpoint-master-realignment/
+    SKILL.md
+```
+
+The front matter includes `name`, a multi-line `description` with trigger phrases and exclusions, a `compatibility` note stating that execution requires an existing deck and a PowerPoint-capable editing environment, and `metadata` with `category: productivity` and the `SlideLayout` icon. The skill delegates actual editing to the available PowerPoint editing skill or agent and requires no additional repository files.
+
+### How to Use It
+
+- *"Realign this deck to the primary Corporate master and consolidate the masters introduced by copy and paste. Work on a copy and keep the custom cover slides."*
+- *"Reset slides 8–15 to the best layouts under master 2. Keep all charts and notes."*
+- *"Show which pasted slides could use our primary master — don't change anything."*
+- *"Clean up the slide masters in this deck after I merged three presentations."*
+- *"Remap the pasted slides to our template."*
+
+### Example Output
+
+The skill returns a concise summary with a link to the edited copy (or a clearly labeled **plan only** result), the selected primary master and its stable ID, and before/after totals for slides, masters, and layouts. It includes a mapping ledger:
+
+| Slide | Old master/layout | Target master/layout | Roles mapped | Confidence | Operation | Verification |
+|---|---|---|---|---|---|---|
+| 4 | Imported A / Title and Content | Corporate / Title and Content | Title, body | High — unique fit | Layout reassigned, placeholders reset | Verified |
+| 9 | Imported B / Two Content | Corporate / Comparison | Title, two columns | Medium — two plausible fits | Held for user choice | — |
+
+A cleanup ledger lists each layout or master part, the reference evidence, the approval status, and whether it was removed or retained, followed by a validation checklist and any remaining decisions.
+
+### Key Design Principles
+
+- **Preserve first.** The original file is never overwritten, and content, notes, charts, media, and interactions are protected over any cosmetic gain.
+- **Roles over names.** Layouts are matched by what the content is and how it is arranged, not by matching layout names or placeholder indices.
+- **Approval before change.** The mapping plan and any destructive cleanup are confirmed by the user before they run, and ambiguous cases are held, not forced.
+- **Honest outcomes.** Layout reassignment is reported separately from a true reset, and results are labeled complete, partial, plan only, or blocked based on the evidence.
+- **Dependency-safe consolidation.** A master is removed only when nothing retained in the deck still relies on it; a smaller master count is never a reason to break references.
+
+---
+
+# Copilot Cowork vs SharePoint vs PowerPoint Skills
+
+These three skill types serve different purposes, live in different environments, and operate under different governance models.
 
 **Copilot Cowork skills** are personal, conversational, and user-controlled. A person builds a skill in Cowork to extend Copilot's behavior in their own context — analyzing their email, reviewing their workload, preparing for their meetings. These skills travel with the individual. They can be shared with specific colleagues or small teams, but they are not centrally managed. Cowork is where skills are created, tested, and refined in real working conditions before any broader rollout is considered.
 
 **Copilot in SharePoint skills** are organizational and governed. They are attached to a site or library and are available to everyone who accesses that site. A SharePoint skill might screen every document submitted for compliance review, build onboarding paths for every new hire, or surface content health issues for a content governance team. These skills are designed for consistent, repeatable use across a group — not personalized to any individual. Because they operate at scale, they require more deliberate design and appropriate oversight before deployment.
 
+**Copilot in PowerPoint skills** are document-scoped. Instead of working across a person's mailbox or an entire site, they operate on one presentation at a time — the deck that is open or supplied. A PowerPoint skill such as Master Realignment applies a repeatable, careful procedure to a single file: inspect, propose, confirm, change a copy, and verify. These skills can be used by an individual or rolled out as a shared standard for anyone who builds client-facing decks, but their reach is always limited to the file in front of them. Because they modify the deliverable itself, they emphasize working on a copy, user approval before changes, and honest reporting of what was and was not verified.
+
 The practical distinction is one of reach and accountability:
 
-| | Cowork Skills | SharePoint Skills |
-|---|---|---|
-| **Scope** | Personal / individual | Organizational / site-wide |
-| **Governance** | User-managed | IT or content owner managed |
-| **Primary use** | Individual productivity | Operational and governance workflows |
-| **Sharing** | Optional, person-to-person | Available to all site users |
-| **Where to start** | Build and test here first | Deploy after Cowork validation |
+| | Cowork Skills | SharePoint Skills | PowerPoint Skills |
+|---|---|---|---|
+| **Scope** | Personal / individual | Organizational / site-wide | A single presentation |
+| **Governance** | User-managed | IT or content owner managed | User-approved per change; template owner sets the standard |
+| **Primary use** | Individual productivity | Operational and governance workflows | Deck quality, consistency, and template compliance |
+| **Data touched** | Email, calendar, Teams, files | Site and library content | The open or supplied deck only |
+| **Sharing** | Optional, person-to-person | Available to all site users | Shared as a team or organization standard |
+| **Where to start** | Build and test here first | Deploy after Cowork validation | Pilot on copies of real decks before broad use |
 
 ---
 
