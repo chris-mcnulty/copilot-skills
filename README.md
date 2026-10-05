@@ -1,5 +1,5 @@
 # copilot-skills
-repository of markdown skills for Copilot Cowork, Copilot in SharePoint, and Copilot in PowerPoint
+Repository of markdown skills for Copilot Cowork, Copilot in SharePoint, and Copilot in PowerPoint.
 
 ## Folder structure
 
