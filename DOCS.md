@@ -29,7 +29,7 @@ This document covers all sixteen AI skill entries in this repository — nine pe
 16. [PowerPoint Master Realignment](#16-powerpoint-master-realignment)
 
 **Summary**
-- [Copilot Cowork vs SharePoint Skills](#copilot-cowork-vs-sharepoint-skills)
+- [Copilot Cowork vs SharePoint vs PowerPoint Skills](#copilot-cowork-vs-sharepoint-vs-powerpoint-skills)
 - [How Skills Scale in an Organization](#how-skills-scale-in-an-organization)
 
 ---
@@ -995,23 +995,26 @@ A cleanup ledger lists each layout or master part, the reference evidence, the a
 
 ---
 
-# Copilot Cowork vs SharePoint Skills
+# Copilot Cowork vs SharePoint vs PowerPoint Skills
 
-These two skill types serve different purposes, live in different environments, and operate under different governance models.
+These three skill types serve different purposes, live in different environments, and operate under different governance models.
 
 **Copilot Cowork skills** are personal, conversational, and user-controlled. A person builds a skill in Cowork to extend Copilot's behavior in their own context — analyzing their email, reviewing their workload, preparing for their meetings. These skills travel with the individual. They can be shared with specific colleagues or small teams, but they are not centrally managed. Cowork is where skills are created, tested, and refined in real working conditions before any broader rollout is considered.
 
 **Copilot in SharePoint skills** are organizational and governed. They are attached to a site or library and are available to everyone who accesses that site. A SharePoint skill might screen every document submitted for compliance review, build onboarding paths for every new hire, or surface content health issues for a content governance team. These skills are designed for consistent, repeatable use across a group — not personalized to any individual. Because they operate at scale, they require more deliberate design and appropriate oversight before deployment.
 
+**Copilot in PowerPoint skills** are document-scoped. Instead of working across a person's mailbox or an entire site, they operate on one presentation at a time — the deck that is open or supplied. A PowerPoint skill such as Master Realignment applies a repeatable, careful procedure to a single file: inspect, propose, confirm, change a copy, and verify. These skills can be used by an individual or rolled out as a shared standard for anyone who builds client-facing decks, but their reach is always limited to the file in front of them. Because they modify the deliverable itself, they emphasize working on a copy, user approval before changes, and honest reporting of what was and was not verified.
+
 The practical distinction is one of reach and accountability:
 
-| | Cowork Skills | SharePoint Skills |
-|---|---|---|
-| **Scope** | Personal / individual | Organizational / site-wide |
-| **Governance** | User-managed | IT or content owner managed |
-| **Primary use** | Individual productivity | Operational and governance workflows |
-| **Sharing** | Optional, person-to-person | Available to all site users |
-| **Where to start** | Build and test here first | Deploy after Cowork validation |
+| | Cowork Skills | SharePoint Skills | PowerPoint Skills |
+|---|---|---|---|
+| **Scope** | Personal / individual | Organizational / site-wide | A single presentation |
+| **Governance** | User-managed | IT or content owner managed | User-approved per change; template owner sets the standard |
+| **Primary use** | Individual productivity | Operational and governance workflows | Deck quality, consistency, and template compliance |
+| **Data touched** | Email, calendar, Teams, files | Site and library content | The open or supplied deck only |
+| **Sharing** | Optional, person-to-person | Available to all site users | Shared as a team or organization standard |
+| **Where to start** | Build and test here first | Deploy after Cowork validation | Pilot on copies of real decks before broad use |
 
 ---
 
